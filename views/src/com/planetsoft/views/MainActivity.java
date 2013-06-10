@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.view.Menu;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements android.view.View.OnClickListener 
@@ -51,12 +52,32 @@ public class MainActivity extends Activity implements android.view.View.OnClickL
 		
 	case DIALOG_SELECT_NAME:
 		builder = new AlertDialog.Builder(this);
-		View view =getLayoutInflater().inflate(R.layout.activity_main_dialog_select_name,null);
+		 builder.setTitle(R.string.activity_main_select_name_title);
+		final View view =getLayoutInflater().inflate(R.layout.activity_main_dialog_select_name,null);
 		builder.setView(view);
+		builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				EditText edit = (EditText) view.findViewById(R.id.activity_main_select_name);
+				stopTracking(edit.getText().toString());
+				
+			}
+		});
+	
+		builder.setNegativeButton(android.R.string.cancel, null) ;
+
 		return builder.create();
 	}
 		return null;
 	
+	}
+
+
+
+	protected void stopTracking(String traceName) {
+		Toast.makeText(this, traceName, Toast.LENGTH_SHORT).show();
+		
 	}
 
 
@@ -69,7 +90,7 @@ public class MainActivity extends Activity implements android.view.View.OnClickL
 			showDialog(DIALOG_SELECT_ACTIVITY_TYPE);
 			
 			break;
-			
+
 		case R.id.activity_menu_button_stop :
 			showDialog(DIALOG_SELECT_NAME);
 

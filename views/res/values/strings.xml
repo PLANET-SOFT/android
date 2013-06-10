@@ -8,5 +8,7 @@
     <string name="activity_menu_button_stop">Arreter</string>
     <string name="activity_menu_button_track">Traces</string>
     <string name="activity_main_dialog_select_name_msg">Nom du parcour</string>
+        <string name="activity_main_select_name_title">Confirmez l\'arret de l\'enregistrement</string>
+    
 
 </resources>
